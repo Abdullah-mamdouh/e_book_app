@@ -22,7 +22,7 @@ class FirebaseErrors {
   // static const String successful =
   //     "Your email address appears to be malformed.";
   static const String emailAlreadyExists =
-      "Signing in with Email and Password is not enabled.";
+      "This Email already is used, Please change this Email";
   static const String invalidCredential = "Email or Password is incorrect";
   static const String wrongPassword = "Your password is wrong.";
   static const String invalidEmail = "User with this email doesn't exist.";

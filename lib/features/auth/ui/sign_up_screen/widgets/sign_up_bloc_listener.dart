@@ -26,10 +26,9 @@ class SignupBlocListener extends StatelessWidget {
               builder: (context) => const IndicatorWidget(),
             );
           },
-          success: (signupResponse)async {
+          success: (signupResponse) {
             context.pop();
             StateHandler.showSuccessDialog(context);
-            await context.read<UserCubit>().emitaddUserStates(context.read<SignupCubit>().userModel!);
           },
           error: (error) {
             StateHandler.setupErrorState(context, error);

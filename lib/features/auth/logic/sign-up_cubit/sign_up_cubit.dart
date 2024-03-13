@@ -34,22 +34,22 @@ class SignupCubit extends Cubit<SignupState> {
     preferences.setString(
         'LoginCredentials', jsonEncode(loginCredentials.toJson()));
   }
-  UserModel? userModel;
-  void emitSignupStates() async {
+  late UserModel userModel;
+  emitSignupStates() async {
     emit(const SignupState.loading());
     //if(await internetChecher.isConnected){
-      userModel = UserModel(
-      name: nameController.text,
-      email: emailController.text,
-      password: passwordController.text,
-    );
-      final response = await _authRepo.signUp(userModel!);
+
+      final response = await _authRepo.signUp(emailController.text, passwordController.text);
       response.when(success: (user) {
         emit(SignupState.success(user));
-        userModel!.id!=user;
+        userModel = UserModel(
+          name: nameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+          id: user,
+        );
         saveUserLoginCredentials(LoginModel(email: emailController.text, password: passwordController.text));
         //debugPrint(registerModel.toString());
-
       }, failure: (error) {
         emit(SignupState.error(error: error.errorModel.message ?? ''));
       });

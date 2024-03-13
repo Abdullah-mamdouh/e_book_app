@@ -41,11 +41,11 @@ class AuthRepo extends FirebaseAuthService{
   }
 
   @override
-  Future<ServiceResult<String>> signUp(UserModel user) async{
+  Future<ServiceResult<String>> signUp(String email, String password) async{
     try{
       final UserCredential response = await auth.createUserWithEmailAndPassword(
-        email: user.email!,
-        password: user.password!,
+        email: email,
+        password: password,
       );
       //print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'+response.toString()+'ssssssssssssssssssssssssssssssssssssssssss');
       if(response.user != null ){

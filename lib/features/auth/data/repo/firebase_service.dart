@@ -10,7 +10,7 @@ abstract class FirebaseAuthService {
 // which is to provide data for a specific type of entity.
   //Stream<AuthUserModel> get authUser;
 
-  Future<ServiceResult<String>> signUp(UserModel user);
+  Future<ServiceResult<String>> signUp(String email, String password);
 
   Future<ServiceResult<AuthResultStatus>> signIn(LoginModel loginModel);
 

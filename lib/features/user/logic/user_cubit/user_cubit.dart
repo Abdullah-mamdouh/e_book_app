@@ -23,7 +23,7 @@ class UserCubit extends Cubit<UserState> {
     //if(await internetChecher.isConnected){
       final response = await userRepo.addUser(userModel);
       response.when(success: (user) {
-        emit(UserState.success(user));
+        //emit(UserState.success(user));
       }, failure: (error) {
         emit(UserState.error(error: error.errorModel.message ?? ''));
       });

@@ -9,7 +9,7 @@ class FirebaseCloudService {
   FirebaseCloudService({required this.firebaseFirestore});
 
 
-  addUser (UserModel user) async{
+  addUser(UserModel user) async{
     return await firebaseFirestore.collection('users').doc(user.id).set(user.toJson());
   }
 

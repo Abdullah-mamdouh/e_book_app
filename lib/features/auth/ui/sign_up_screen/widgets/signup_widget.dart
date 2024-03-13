@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/widgets/bouncing_button.dart';
+import '../../../../user/logic/user_cubit/user_cubit.dart';
 import '../../../logic/sign-up_cubit/sign_up_cubit.dart';
 import '../../sign_in_screen/widgets/terms_and_conditions_text.dart';
 import '../../widget/carve_widget.dart';
@@ -62,9 +63,10 @@ class SignupWidget extends StatelessWidget {
       ),
     );
   }
-  void validateThenDoSignup(BuildContext context) {
+  void validateThenDoSignup(BuildContext context) async{
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-      context.read<SignupCubit>().emitSignupStates();
+      await context.read<SignupCubit>().emitSignupStates();
+      await context.read<UserCubit>().emitaddUserStates(context.read<SignupCubit>().userModel!);
     }
   }
 }
