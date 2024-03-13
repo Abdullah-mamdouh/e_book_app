@@ -11,24 +11,26 @@ import '../../data/repo/user_repo.dart';
 import 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  final InternetCheckerImpl internetChecher;
+  //final InternetCheckerImpl internetChecher;
   final UserRepo userRepo;
-  UserCubit({required this.internetChecher, required this.userRepo}) : super(const UserState.initial());
+  UserCubit({//required this.internetChecher,
+    required this.userRepo}) : super(const UserState.initial());
 
+  static UserCubit get(context) => BlocProvider.of<UserCubit>(context);
 
-  void emitaaddUserStates(UserModel userModel) async {
+  emitaddUserStates(UserModel userModel) async {
     emit(const UserState.loading());
-    if(await internetChecher.isConnected){
+    //if(await internetChecher.isConnected){
       final response = await userRepo.addUser(userModel);
       response.when(success: (user) {
         emit(UserState.success(user));
       }, failure: (error) {
         emit(UserState.error(error: error.errorModel.message ?? ''));
       });
-    }
-    else {
-      emit(UserState.error(error: 'No Internet Connection' ?? ''));
-    }
+    // }
+    // else {
+    //   emit(UserState.error(error: 'No Internet Connection' ?? ''));
+    // }
   }
 
 

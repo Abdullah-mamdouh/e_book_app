@@ -23,7 +23,7 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
         Duration(
           seconds: 4,
         ),
-        () => context.pushNamed(widgetAppear(context)));
+        () => context.pushNamed(Routes.loginScreen));
     super.initState();
   }
 
@@ -35,7 +35,8 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
           padding: EdgeInsets.symmetric(vertical: 0.0),
           height: MediaQuery.of(context).size.height * 0.50.h,
           width: double.infinity,
-          child: Image.asset("images/loc-camp.gif"),
+          decoration: BoxDecoration(color: Colors.teal),
+          //child: Image.asset("images/loc-camp.gif"),
         ),
       ),
     );

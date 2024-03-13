@@ -11,9 +11,10 @@ import 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   final AuthRepo authRepo;
-  InternetCheckerImpl internetChecker;
+  //InternetCheckerImpl internetChecker;
   final SharedPreferences sharedPreferences;
-  SignInCubit({required this.authRepo, required this.sharedPreferences, required this.internetChecker}) : super(const SignInState.initial());
+  SignInCubit({required this.authRepo, required this.sharedPreferences,// required this.internetChecker
+  }) : super(const SignInState.initial());
 
   static SignInCubit get(context) => BlocProvider.of<SignInCubit>(context);
 
@@ -47,7 +48,7 @@ class SignInCubit extends Cubit<SignInState> {
     emit(const SignInState.loading());
     final loginCredentials = LoginModel(
     email: emailController.text, password: passwordController.text);
-    if (await internetChecker.isConnected) {
+   // if (await internetChecker.isConnected) {
       final response = await authRepo.signIn(loginCredentials);
       response.when(success: (loginModel) {
         emit(SignInState.success(loginModel));
@@ -56,10 +57,10 @@ class SignInCubit extends Cubit<SignInState> {
       }, failure: (error) {
         emit(SignInState.error(error: error.errorModel.message ?? ''));
       });
-    }
-
-    else {
-      emit(SignInState.error(error: 'No Internet Connection' ?? ''));
-    }
+    // }
+    //
+    // else {
+    //   emit(SignInState.error(error: 'No Internet Connection' ?? ''));
+    // }
   }
 }

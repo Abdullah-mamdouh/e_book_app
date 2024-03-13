@@ -7,43 +7,44 @@ import '../../../../core/service/firebase_cloud_service/firebase_cloud_service.d
 import '../models/user_model.dart';
 
 class UserRepo {
-  InternetCheckerImpl internetChecker;
+  //InternetCheckerImpl internetChecker;
   FirebaseCloudService firebaseCloudService;
 
   UserRepo(
       {
         required this.firebaseCloudService,
-        required this.internetChecker});
+        //required this.internetChecker
+      });
 
   Future<ServiceResult<UserModel>>addUser(UserModel userModel) async{
 
-    if(await internetChecker.isConnected){
+    // if(await internetChecker.isConnected){
       try {
         final response = await firebaseCloudService.addUser(userModel);
         return ServiceResult.success(response);
       }catch (errro) {
         return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
       }
-    }
-    else {
-      return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
-    }
+    // }
+    // else {
+    //   return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
+    // }
 
   }
 
   Future<ServiceResult<UserModel>>updateUser(UserModel userModel) async{
 
-    if(await internetChecker.isConnected){
+    // if(await internetChecker.isConnected){
       try {
         final response = await firebaseCloudService.updateUser(userModel);
         return ServiceResult.success(response);
       }catch (errro) {
         return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
       }
-    }
-    else {
-      return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
-    }
+    // }
+    // else {
+    //   return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
+    // }
 
   }
 

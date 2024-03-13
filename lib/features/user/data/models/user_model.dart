@@ -8,6 +8,7 @@ class UserModel {
   final String? email;
   final String? password;
   final String? name;
+  final bool? isAdmin;
   final bool? isActive;
 
   const UserModel({
@@ -16,7 +17,7 @@ class UserModel {
     required this.password,
     required this.name,
     this.isActive = false,
-
+    this.isAdmin = false,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

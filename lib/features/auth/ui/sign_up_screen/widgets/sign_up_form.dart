@@ -88,9 +88,9 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ),
             validator: (value) {
-              if (value != null && !AppRegex.isPasswordValid(value)) {
-                return 'Please enter a valid password';
-              }
+              // if (value != null && !AppRegex.isPasswordValid(value)) {
+              //   return 'Please enter a valid password';
+              // }
             },
           ),
           verticalSpace(18),

@@ -1,4 +1,5 @@
 import 'package:e_book_app/core/helpers/extensions.dart';
+import 'package:e_book_app/features/user/logic/user_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/indicator_widget.dart';
@@ -25,9 +26,10 @@ class SignupBlocListener extends StatelessWidget {
               builder: (context) => const IndicatorWidget(),
             );
           },
-          success: (signupResponse) {
+          success: (signupResponse)async {
             context.pop();
             StateHandler.showSuccessDialog(context);
+            await context.read<UserCubit>().emitaddUserStates(context.read<SignupCubit>().userModel!);
           },
           error: (error) {
             StateHandler.setupErrorState(context, error);
