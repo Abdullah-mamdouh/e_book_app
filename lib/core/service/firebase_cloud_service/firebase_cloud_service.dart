@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_book_app/features/book/data/models/book_model.dart';
 import 'package:e_book_app/features/user/data/models/user_model.dart';
 
 class FirebaseCloudService {
@@ -17,6 +18,9 @@ class FirebaseCloudService {
     await firebaseFirestore.collection('users').doc(user.id).update(user.toJson());
   }
 
+  addBook(BookModel book) async{
+    return await firebaseFirestore.collection('books').doc().set(book.toJson());
+  }
 
 
 }
