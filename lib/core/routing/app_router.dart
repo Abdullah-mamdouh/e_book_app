@@ -1,3 +1,4 @@
+import 'package:e_book_app/features/book/ui/adding_book.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../features/auth/ui/sign_in_screen/login_screen.dart';
@@ -23,10 +24,10 @@ class AppRouter {
         return PageTransition(
           type: PageTransitionType.bottomToTop,duration: Duration(milliseconds:500 ),
           child: const SignupScreen(),);
-      /*case Routes.homeScreen:
+      case Routes.homeScreen:
         return PageTransition(
           type: PageTransitionType.leftToRightWithFade, duration: Duration(milliseconds:500 ),
-          child: const HomeScreen(),);*/
+          child: const AddingBook(),);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

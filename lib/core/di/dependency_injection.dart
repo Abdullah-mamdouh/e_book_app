@@ -1,8 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:e_book_app/core/service/firebase_cloud_service/firebase_cloud_service.dart';
+import 'package:e_book_app/core/service/firebase_storage_service/firebase_storage_service.dart';
+import 'package:e_book_app/core/service/firebase_storage_service/firebase_storage_service.dart';
+import 'package:e_book_app/features/book/data/repo/book_repo.dart';
+import 'package:e_book_app/features/book/logic/book_cubit.dart';
 import 'package:e_book_app/features/user/data/repo/user_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,12 +47,26 @@ Future<void> setupGetIt() async {
   /// Firebase Cloud Service
   getIt.registerLazySingleton<FirebaseCloudService>(() => FirebaseCloudService(firebaseFirestore: cloudFirestore));
 
+  ///  firebase storage
+  final firebaseStorage = FirebaseStorage.instance;
+  /// Firebase Storage Service
+  getIt.registerLazySingleton<FirebaseStorageService>(() => FirebaseStorageService(
+      firebaseStorage: firebaseStorage,));
+
   /// User Repo
   getIt.registerLazySingleton<UserRepo>(() => UserRepo(//internetChecker: getIt(),
       firebaseCloudService: getIt()));
-  /// Register cubit
+  /// book Repo
+  getIt.registerLazySingleton<BookRepo>(() =>BookRepo(
+    firebaseStorageService:  getIt(),
+    //internetChecker: getIt(),
+      firebaseCloudService: getIt()));
+  /// user cubit
   getIt.registerFactory(() => UserCubit(//internetChecher: getIt(),
       userRepo: getIt()));
+  /// book cubit
+  getIt.registerFactory(() => BookCubit(//internetChecher: getIt(),
+      bookRepo:  getIt(),));
 
   /// Dio & NotificationAPI
   // Dio dio = DioFactory.getDio()
