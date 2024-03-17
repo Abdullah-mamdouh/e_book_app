@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/widgets/bouncing_button.dart';
+import '../../../../user/logic/user_cubit/user_cubit.dart';
 import '../../../logic/sign_in_cubit/sign_in_cubit.dart';
 import '../../widget/carve_widget.dart';
 import '../../widget/half_circle_widget.dart';
@@ -71,7 +72,7 @@ class SigninWidget extends StatelessWidget {
     );
   }
 
-  void validateThenDoLogin(BuildContext context) {
+  void validateThenDoLogin(BuildContext context) async{
     if (context.read<SignInCubit>().formKey.currentState!.validate()) {
       context.read<SignInCubit>().emitSignInStates();
     }

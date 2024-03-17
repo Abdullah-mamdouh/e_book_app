@@ -44,6 +44,6 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
 
   String widgetAppear(BuildContext context){
     bool isLogin = context.read<SignInCubit>().emailController.text != null ? true : false;
-    return isLogin ? Routes.homeScreen : Routes.loginScreen;
+    return isLogin ? Routes.addBookScreen : Routes.loginScreen;
   }
 }

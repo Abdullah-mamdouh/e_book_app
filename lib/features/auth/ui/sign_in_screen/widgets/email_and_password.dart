@@ -4,7 +4,6 @@ import '../../../../../core/helpers/app_regex.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
 import '../../../logic/sign_in_cubit/sign_in_cubit.dart';
-import 'password_validations.dart';
 
 class EmailAndPassword extends StatefulWidget {
   const EmailAndPassword({super.key});

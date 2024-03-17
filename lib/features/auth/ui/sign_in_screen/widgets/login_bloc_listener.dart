@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/indicator_widget.dart';
 import '../../../../../core/widgets/state_handler_widget.dart';
+import '../../../../user/logic/user_cubit/user_cubit.dart';
 import '../../../logic/sign_in_cubit/sign_in_cubit.dart';
 import '../../../logic/sign_in_cubit/sign_in_state.dart';
 
@@ -24,9 +25,10 @@ class LoginBlocListener extends StatelessWidget {
               builder: (context) => const IndicatorWidget(),
             );
           },
-          success: (loginResponse) {
+          success: (loginResponse) async{
             context.pop();
-            context.pushNamed(Routes.homeScreen);
+            await context.read<UserCubit>().emitGetUserStates(loginResponse);
+            context.pushNamed(Routes.activeUserScreen);
             // NotificationCubit.get(context).emitSendNotification();
           },
           error: (error) {

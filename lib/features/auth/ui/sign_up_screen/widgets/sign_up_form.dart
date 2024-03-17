@@ -5,7 +5,6 @@ import '../../../../../core/helpers/app_regex.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
 import '../../../logic/sign-up_cubit/sign_up_cubit.dart';
-import '../../sign_in_screen/widgets/password_validations.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});

@@ -12,7 +12,7 @@ class AuthRepo extends FirebaseAuthService{
 
   AuthRepo(this.auth);
   @override
-  Future<ServiceResult<AuthResultStatus>> signIn(LoginModel loginModel) async{
+  Future<ServiceResult<String>> signIn(LoginModel loginModel) async{
     try{
             final UserCredential response = await auth.signInWithEmailAndPassword(
               email: loginModel.email,
@@ -20,7 +20,7 @@ class AuthRepo extends FirebaseAuthService{
             );
             if(response.user != null ){
               print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'+response.user.toString()+'ssssssssssssssssssssssssssssssssssssssssss');
-              return ServiceResult.success(AuthResultStatus.successful);
+              return ServiceResult.success(response.user!.uid);
             }else{
               return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(AuthResultStatus.unknown)));
             }
