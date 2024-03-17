@@ -48,4 +48,37 @@ class UserRepo {
 
   }
 
+  Future<ServiceResult<UserModel>>getUser(String id) async{
+
+    // if(await internetChecker.isConnected){
+    try {
+      final response = await firebaseCloudService.getUser(id);
+      return ServiceResult.success(response);
+    }catch (errro) {
+      return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
+    }
+    // }
+    // else {
+    //   return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
+    // }
+
+  }
+
+  Future<ServiceResult<List<UserModel>>>getAllUsersNotCtive() async{
+
+    // if(await internetChecker.isConnected){
+    try {
+      final response = await firebaseCloudService.getNotActiveUsers();
+      return ServiceResult.success(response);
+    }catch (errro) {
+      print('$errro 3333333333333333333333333');
+      return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
+    }
+    // }
+    // else {
+    //   return ServiceResult.failure(Handler.handle(ErrorHandlerAuth('No Internet')));
+    // }
+
+  }
+
 }

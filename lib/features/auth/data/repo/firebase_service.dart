@@ -12,7 +12,7 @@ abstract class FirebaseAuthService {
 
   Future<ServiceResult<String>> signUp(String email, String password);
 
-  Future<ServiceResult<AuthResultStatus>> signIn(LoginModel loginModel);
+  Future<ServiceResult<String>> signIn(LoginModel loginModel);
 
   Future<ServiceResult<void>> signOut();
 }

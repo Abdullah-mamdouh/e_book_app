@@ -9,9 +9,9 @@ class UserModel {
   final String? password;
   final String? name;
   final bool? isAdmin;
-  final bool? isActive;
+  bool? isActive;
 
-  const UserModel({
+  UserModel({
     this.id,
     required this.email,
     required this.password,

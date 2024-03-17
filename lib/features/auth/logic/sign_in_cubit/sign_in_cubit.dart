@@ -43,7 +43,7 @@ class SignInCubit extends Cubit<SignInState> {
       sharedPreferences.remove('LoginCredentials');
     }
   }
-
+  String? userId;
   void emitSignInStates() async {
     emit(const SignInState.loading());
     final loginCredentials = LoginModel(
@@ -51,9 +51,9 @@ class SignInCubit extends Cubit<SignInState> {
    // if (await internetChecker.isConnected) {
       final response = await authRepo.signIn(loginCredentials);
       response.when(success: (loginModel) {
-        emit(SignInState.success(loginModel));
-        debugPrint(loginModel.toString());
+        userId = loginModel;
         saveUserLoginCredentials(loginCredentials);
+        emit(SignInState.success(loginModel));
       }, failure: (error) {
         emit(SignInState.error(error: error.errorModel.message ?? ''));
       });

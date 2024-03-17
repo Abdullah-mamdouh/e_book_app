@@ -41,10 +41,22 @@ class BookRepo {
       return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
     }
   }
-
+  /*
   Future<ServiceResult<String>>uploadImage(File file,String type) async{
     try {
       final response = await firebaseStorageService.uploadImageToStorage(type: type, file: file);
+      print('adadddddddddddddddddddddddddddddddddddddddddddddddddddddd');
+      return ServiceResult.success(response);
+    }catch (errro) {
+      print('$errro wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
+      return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));
+    }
+  }
+  */
+
+  Future<ServiceResult<List<BookModel>>>getAllBooks() async{
+    try {
+      final response = await firebaseCloudService.getAllBooks();
       return ServiceResult.success(response);
     }catch (errro) {
       return ServiceResult.failure(Handler.handle(ErrorHandlerAuth(errro)));

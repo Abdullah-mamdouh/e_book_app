@@ -22,17 +22,19 @@ class FirebaseStorageService {
       return url;
 
   }
-
+/*
   Future<String> uploadImageToStorage({required File file, required String type}) async{
     Reference ref =
     firebaseStorage.ref().child('$type/${DateTime.now().millisecondsSinceEpoch}');
-    UploadTask uploadTask = ref.putFile(file, SettableMetadata(contentType: '$type'));
-
-    TaskSnapshot snapshot = await uploadTask;
-
-    String url = await snapshot.ref.getDownloadURL();
-    return url;
-
+    UploadTask  uploadTask = ref.putFile(file, SettableMetadata(contentType: '$type'));
+    await uploadTask.whenComplete(() async{
+      String url = await ref.getDownloadURL();
+      return url;
+    }).catchError((onError) {
+      print(onError);
+    });
+    // TaskSnapshot snapshot = await uploadTask;
+    return '';
   }
-
+*/
 }

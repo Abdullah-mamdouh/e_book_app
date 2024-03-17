@@ -33,5 +33,48 @@ class UserCubit extends Cubit<UserState> {
     // }
   }
 
+  emitupdateUserStates(UserModel user)async {
+    emit(const UserState.loading());
+    //if(await internetChecher.isConnected){
+    user.isActive = true;
+    final response = await userRepo.updateUser(user);
+    response.when(success: (user) {
+      //emit(UserState.success(user));
+    }, failure: (error) {
+      emit(UserState.error(error: error.errorModel.message ?? ''));
+    });
+    await emitGetAllUsersStates();
+    // }
+    // else {
+    //   emit(UserState.error(error: 'No Internet Connection' ?? ''));
+    // }
+  }
+
+  UserModel? user;
+  emitGetUserStates(String id) async {
+      emit(const UserState.loading());
+      //if(await internetChecher.isConnected){
+      final response = await userRepo.getUser(id);
+      response.when(success: (userModel) {
+        emit(UserState.success(userModel));
+        user = userModel;
+      }, failure: (error) {
+        emit(UserState.error(error: error.errorModel.message ?? ''));
+      });
+  }
+
+  static List<UserModel> users = [];
+  emitGetAllUsersStates() async {
+    emit(const UserState.loading());
+    //if(await internetChecher.isConnected){
+    final response = await userRepo.getAllUsersNotCtive();
+    response.when(success: (usersModel) {
+      emit(UserState.success(usersModel));
+      print(users.toString());
+      users = usersModel;
+    }, failure: (error) {
+      emit(UserState.error(error: error.errorModel.message ?? ''));
+    });
+  }
 
 }

@@ -7,9 +7,10 @@ class BookModel {
   String bookURL;
   String authorName;
   String category;
+  String bookName;
   String coverImageURL;
 
-  BookModel({required this.bookURL, required this.authorName, required this.category, required this.coverImageURL});
+  BookModel({required this.bookURL, required this.authorName, required this.bookName, required this.category, required this.coverImageURL});
 
   factory BookModel.fromJson(Map<String, dynamic> json) =>
       _$BookModelFromJson(json);

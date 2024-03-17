@@ -66,7 +66,7 @@ class SignupWidget extends StatelessWidget {
   void validateThenDoSignup(BuildContext context) async{
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
       await context.read<SignupCubit>().emitSignupStates();
-      await context.read<UserCubit>().emitaddUserStates(context.read<SignupCubit>().userModel!);
+      await context.read<UserCubit>().emitaddUserStates(context.read<SignupCubit>().userModel);
     }
   }
 }
