@@ -1,5 +1,6 @@
-import 'package:e_book_app/features/book/ui/adding_book.dart';
-import 'package:e_book_app/features/book/ui/books_screen.dart';
+import 'package:e_book_app/features/book/ui/adding_book_screen/adding_book.dart';
+import 'package:e_book_app/features/book/ui/books_screen/books_screen.dart';
+import 'package:e_book_app/features/book/ui/pdf_view_screen/pdf_view_screen.dart';
 import 'package:e_book_app/features/user/ui/ative_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -38,6 +39,10 @@ class AppRouter {
         return PageTransition(
           type: PageTransitionType.leftToRightWithFade, duration: Duration(milliseconds:500 ),
           child: const ActiveUserScreen(),);
+      case Routes.pdfViewScreen:
+        return PageTransition(
+          type: PageTransitionType.leftToRightWithFade, duration: Duration(milliseconds:500 ),
+          child: PDFViewScreen(pdfURL: settings.arguments.toString()),);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

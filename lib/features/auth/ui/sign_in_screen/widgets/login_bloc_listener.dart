@@ -28,7 +28,7 @@ class LoginBlocListener extends StatelessWidget {
           success: (loginResponse) async{
             context.pop();
             await context.read<UserCubit>().emitGetUserStates(loginResponse);
-            context.pushNamed(Routes.activeUserScreen);
+            context.pushNamed(Routes.booksScreen);
             // NotificationCubit.get(context).emitSendNotification();
           },
           error: (error) {

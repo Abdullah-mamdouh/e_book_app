@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
+import 'core/utils/config_size.dart';
 import 'features/auth/logic/sign-up_cubit/sign_up_cubit.dart';
 import 'features/auth/logic/sign_in_cubit/sign_in_cubit.dart';
 import 'features/user/logic/user_cubit/user_cubit.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ConfigSize().init(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider<BookCubit>(
