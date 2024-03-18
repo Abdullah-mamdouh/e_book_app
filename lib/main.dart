@@ -1,3 +1,4 @@
+import 'package:e_book_app/core/utils/config_size.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
