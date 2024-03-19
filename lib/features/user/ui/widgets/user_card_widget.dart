@@ -21,52 +21,53 @@ class UserCardWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
       decoration: BoxDecoration(
-          color: Colors.grey,
+          color: ColorsManager.mainColor.withOpacity(0.8),
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: ColorsManager.mainColor, width: 0.2)),
       padding: EdgeInsets.all(10.sp),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /*ClipRRect(
+          ClipRRect(
             borderRadius: BorderRadius.circular(90.sp),
             child: Image(
               image: AssetImage('assets/images/user${userImage}.png'),
               fit: BoxFit.cover,
-              height: 70.h,
+              height: 100.h,
               width: 70.w,
             ),
-          ),*/
-          SizedBox(width: ConfigSize.screenWidth!*1,),
+          ),
+          horizontalSpace(5),
 
           Expanded(
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Text(
-                      user.name.toString(),
-                      maxLines: 1,
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
-                      style: TextStyles.font24BlackBold,
-                  ),),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          user.name.toString(),
+                          maxLines: 1,
+                          softWrap: true,
+                          overflow: TextOverflow.fade,
+                          style: TextStyles.font24BlackBold,
+                        ),
+
+                      ),
+                      BouncingButton(width: 100.w,child: Text("Active"), onPress: (){
+                        context.read<UserCubit>().emitupdateUserStates(user);
+                      })
+                    ],
+                  ),
+                  verticalSpace(10),
+                  Text(
+                    ' ${user.email}',
+                    style: TextStyles.font13DarkBlueMedium,
+                  ),
+
                 ],
-              ),
-              Text(
-                ' ${user.email}',
-                style: TextStyles.font13DarkBlueMedium,
-              ),
-              verticalSpace(10),
-              BouncingButton(width: 20,
-                  child: Text('Active'), onPress: () async{
-                await context.read<UserCubit>().emitupdateUserStates(user);
-              }),
-            ],
-          ))
+              ))
         ],
       ),
     );
