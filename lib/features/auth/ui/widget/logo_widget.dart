@@ -11,7 +11,7 @@ class LogoWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 0.0),
       height: MediaQuery.of(context).size.height *0.30.h,
       width: double.infinity,
-      child: Image.asset("images/loc-camp.gif"),
+      child: Image.asset("assets/images/books.gif"),
     );
   }
 }

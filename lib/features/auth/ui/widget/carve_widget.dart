@@ -10,12 +10,11 @@ class CarveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Positioned(
-      top: 0,
-      left: 0,
-      child: Image.asset(
-        'images/signin_top.png',
-        width: 140.w,
-        color: ColorsManager.mainColor,
+      top: -80.h,
+      left: -85.w,
+      child: CircleAvatar(
+        backgroundColor: ColorsManager.mainColor.withOpacity(0.4),
+        radius: 100.sp,
       ),
     );
   }
