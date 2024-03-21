@@ -1,6 +1,10 @@
 # e_book_app
 
-A new Flutter project.
+This app aims to make liberary online and any one can access it. 
+user can register and login to app with firbase Auth. he can show all books but cann't read or download any book after activation yur account.
+Account activation: Users can activate their accounts only after admin approval. Until then, they cannot access or read any books.
+Admin panel: Admins can add books (including cover image, PDF, category, and author name), edit existing books, delete books, and review and accept user registrations.
+
 
 ## Getting Started
 
